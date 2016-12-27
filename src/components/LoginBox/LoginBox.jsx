@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
 import './LoginBox.css';
 
+const InitialState = {
+    name: '',
+    password: '',
+    remember: false
+  }
+
 class LoginBox extends Component {
+
   render () {
     return (
 
@@ -18,7 +25,7 @@ class LoginBox extends Component {
           </div>
           <input type="checkbox" name="remember" id="remember"/>
           <label className="radio" htmlFor="remember">Stay Logged In</label>
-          <input type="submit" value="Login"/>
+          <input type="submit"/>
         </form>
       </div>
     );

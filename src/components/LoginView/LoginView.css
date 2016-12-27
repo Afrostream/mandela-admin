@@ -1,0 +1,35 @@
+.App {
+  text-align: center;
+  height: 100%;
+  background-color: #222;
+}
+
+.App .app-background:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background-image: url(../../../public/assets/pexels-photo.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+.App-logo {
+  height: 200px;
+}
+
+.App-header {
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.container {
+  left: 50%;
+  position: fixed;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}

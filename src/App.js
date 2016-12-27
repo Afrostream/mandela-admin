@@ -1,20 +1,17 @@
 import React, { Component } from 'react';
-import logo from './logo.png';
-import LoginBox from './components/LoginBox'
-import './App.css';
+import LoginBox from './components/LoginBox/LoginBox'
+import LoginView from './components/LoginView/LoginView'
+import Admin from './components/Admin/Admin'
+import { Router, Route, browserHistory } from 'react-router'
+
 
 class App extends Component {
   render () {
     return (
-      <div className="App">
-        <div className="app-background"/>
-        <div className="container">
-          <div className="App-header">
-            <img src={logo} className="App-logo" alt="logo"/>
-          </div>
-          <LoginBox />
-        </div>
-      </div>
+      <Router history={browserHistory}>
+        <Route path="/" component={LoginView}/>
+        <Route path='/admin' component={Admin}/>
+      </Router>
     );
   }
 }
