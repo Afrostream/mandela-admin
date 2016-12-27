@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
+import { logUser } from '../../actions/user'
 import './LoginBox.css';
 
 const InitialState = {
@@ -9,11 +11,7 @@ const InitialState = {
 
 class LoginBox extends Component {
 
-  state = {
-    name: '',
-    password: '',
-    remember: false
-  }
+  state = InitialState
 
   handleChange(field, e) {
     this.setState({
@@ -27,6 +25,11 @@ class LoginBox extends Component {
     })
   }
 
+  handleSubmit(e) {
+    e.preventDefault()
+    this.props.logUser(this.state)
+  }
+
   render () {
     const { 
       handleChange,
@@ -37,7 +40,7 @@ class LoginBox extends Component {
 
       <div className="signin cf">
         <div className="avatar"/>
-        <form>
+        <form onSubmit={this.handleSubmit.bind(this)}>
           <div className="inputrow">
             <input type="text" id="name" onChange={handleChange.bind(this, 'name')} placeholder="Username" value={name}/> 
             <label className="ion-person" htmlFor="name"></label>
@@ -55,5 +58,7 @@ class LoginBox extends Component {
   }
 }
 
-export default LoginBox;
+export default connect(null, {
+  logUser
+})(LoginBox);
 

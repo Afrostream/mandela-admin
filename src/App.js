@@ -1,19 +1,22 @@
-import React, { Component } from 'react';
-import LoginBox from './components/LoginBox/LoginBox'
+import React, { Component } from 'react'
+import { Provider } from 'react-redux'
 import LoginView from './components/LoginView/LoginView'
 import Admin from './components/Admin/Admin'
 import { Router, Route, browserHistory } from 'react-router'
+import store from './lib/createStore'
 
 
 class App extends Component {
   render () {
     return (
-      <Router history={browserHistory}>
-        <Route path="/" component={LoginView}/>
-        <Route path='/admin' component={Admin}/>
-      </Router>
+      <Provider store={store}>
+        <Router history={browserHistory}>
+          <Route path="/" component={Admin}/>
+          <Route path='/login' component={LoginView}/>
+        </Router>
+      </Provider>
     );
   }
 }
 
-export default App;
+export default App
