@@ -12,7 +12,7 @@ class App extends Component {
       <Provider store={store}>
         <Router history={browserHistory}>
           <Route path="/" component={Admin}/>
-          <Route path='/login' component={LoginView}/>
+          {/*<Route path='/login' component={LoginView}/>*/}
         </Router>
       </Provider>
     );
