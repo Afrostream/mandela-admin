@@ -1,5 +1,6 @@
 'use strict';
 var express = require('express');
+var cors = require('cors');
 var path = require('path');
 var config = require('../config');
 //var favicon = require('serve-favicon');
@@ -10,6 +11,7 @@ var middlewareDumpPostdata = require('./middlewares/middleware-dumppostdata.js')
 // pre-configured express app
 var AfrostreamNodeApp = require('afrostream-node-app');
 var app = AfrostreamNodeApp.create();
+app.use(cors());
 app.use(middlewareDumpPostdata());
 app.use(middlewareAuth());
 

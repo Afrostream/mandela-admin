@@ -5,6 +5,7 @@ var backend = require('../backend');
 var config = require('../../config');
 
 var _signin = function (req) {
+  console.error('REQUEST BODY :', req.body)
   return backend.post({
     uri: '/auth/oauth2/token',
     body: {
