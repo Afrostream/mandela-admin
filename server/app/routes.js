@@ -66,8 +66,5 @@ router.route(/^\/(categorys|licensors|movies|seasons|episodes|videos|languages|i
     res.sendFile(path.resolve(req.app.get('appPath') + '/index.html'));
   });
 
-// undefined routes should return a 404
-router.route('.*').get(errors[404]);
-
 
 module.exports = router;

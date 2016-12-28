@@ -16,7 +16,7 @@ app.use(middlewareAuth());
 switch (process.env.NODE_ENV) {
   case 'production':
   case 'staging':
-    app.set('appPath', path.join(global.__basedir, 'dist', 'client'));
+    app.set('appPath', path.resolve(__dirname, '..', '..', 'client', 'build'));
     app.set('docPath', path.join(global.__basedir, 'dist', 'apidoc'));
     //app.use(favicon(path.join(global.__basedir, 'dist', 'client', 'favicon.ico')));
     app.use(express.static(app.get('appPath')));
@@ -27,7 +27,7 @@ switch (process.env.NODE_ENV) {
 
     app.use(middlewareLiveReload());
     app.use(middlewareErrorHandler());
-    app.set('appPath', path.join(global.__basedir, 'client'));
+    app.set('appPath', path.resolve(__dirname, '..', '..', 'client', 'build'));
     app.use(express.static(path.join(global.__basedir, '.tmp')));
     app.use(express.static(app.get('appPath')));
     break;
@@ -35,5 +35,8 @@ switch (process.env.NODE_ENV) {
 
 var routes = require('./routes.js');
 app.use(routes);
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '..', 'client', 'build', 'index.html'));
+});
 
 module.exports = app;

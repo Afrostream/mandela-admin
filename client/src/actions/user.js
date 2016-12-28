@@ -18,7 +18,7 @@ export function checkUser() {
     return User.hasToken() && 
     User.get()
         .then((user) => dispatch(setUser(user)))
-        .catch(err => {error: err})
+        .catch(err => ({error: err}))
   }
   
 }
