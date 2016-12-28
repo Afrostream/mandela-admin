@@ -3,11 +3,12 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
-    "express": "4.13.3"
+    "express": "4.13.3",
+    "morgan": "^1.7.0"
   },
   "scripts": {
     "start": "concurrently \"npm run server\" \"npm run client\"",
-    "server": "node server",
+    "server": "nodemon server",
     "client": "node start-client.js"
   },
   "devDependencies": {
