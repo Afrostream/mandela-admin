@@ -14,7 +14,8 @@
     "postinstall": "cd client && npm install",
     "start": "concurrently \"npm run server\" \"npm run client\"",
     "server": "nodemon server/staging.js",
-    "client": "node start-client.js"
+    "client": "node start-client.js",
+    "build": "cd client && npm run build"
   },
   "devDependencies": {
     "concurrently": "^3.1.0"
