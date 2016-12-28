@@ -3,7 +3,7 @@ import ActionTypes from '../consts/ActionTypes';
 
 const InitialState = {
   loginPending: false,
-  user: {}
+  user: null
 }
 
 export default createReducer(InitialState, {

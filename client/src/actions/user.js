@@ -12,6 +12,17 @@ export function setUser(user) {
   }
 }
 
+export function checkUser() {
+  console.warn('Checking if user')
+  return dispatch => {
+    return User.hasToken() && 
+    User.get()
+        .then((user) => dispatch(setUser(user)))
+        .catch(err => {error: err})
+  }
+  
+}
+
 export function signOut() {
   return (dispatch) => {
     User.signOut()

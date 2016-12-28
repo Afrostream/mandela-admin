@@ -22,6 +22,10 @@ function signIn({ email, password } = {}) {
   }).then(setToken)
 }
 
+function hasToken() {
+  return !!Cookies.get('token')
+}
+
 function signOut() {
   Cookies.remove('token')
 }
@@ -32,6 +36,6 @@ function get() {
   })
 }
 
-const User = { signIn, signOut, get };
+const User = { signIn, signOut, hasToken, get };
 window.User = User
 export default User;

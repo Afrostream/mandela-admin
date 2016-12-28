@@ -1,15 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { browserHistory } from 'react-router'
-import { signOut } from '../../actions/user'
+import { signOut, checkUser } from '../../actions/user'
 import LoginView from '../LoginView/LoginView'
 import './Admin.css'
 
 class Admin extends Component {
-
-  // disconnectUser() {
-  //   this.props.setUser(null)
-  // }
+  componentWillMount() {
+    this.props.checkUser()
+  }
 
   render() {
     if (!this.props.User.user) {
@@ -25,5 +23,5 @@ class Admin extends Component {
 }
 
 export default connect(({User}) => ({User}), {
-  signOut,
+  signOut, checkUser
 })(Admin)
