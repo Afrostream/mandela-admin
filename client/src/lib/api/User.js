@@ -7,13 +7,7 @@ const testData = {
 }
 
 function setToken(data) {
-  console.log('User Data :', data)
   Cookies.set('token', data.access_token)
-  return data
-}
-
-function userLogger(data) {
-  console.log('USER :', data)
   return data
 }
 
@@ -28,12 +22,16 @@ function signIn({ email, password } = {}) {
   }).then(setToken)
 }
 
+function signOut() {
+  Cookies.remove('token')
+}
+
 function get() {
   return fetchApi({
     endpoint: '/api/users/me'
-  }).then(userLogger);
+  })
 }
 
-const User = { signIn, get };
+const User = { signIn, signOut, get };
 window.User = User
 export default User;

@@ -8,7 +8,6 @@ const InitialState = {
 
 export default createReducer(InitialState, {
   [ActionTypes.User.setUser](state, {user} ) {
-    console.log('Set user :', user )
     return { ...state, user: user || null }
   }
 })

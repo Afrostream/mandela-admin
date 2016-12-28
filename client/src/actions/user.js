@@ -1,5 +1,4 @@
 import ActionTypes from '../consts/ActionTypes'
-import { browserHistory } from 'react-router'
 import User from '../lib/api/User'
 
 export function getUser() {
@@ -7,10 +6,16 @@ export function getUser() {
 }
 
 export function setUser(user) {
-  console.log('SetUser :', user)
   return {
     type: ActionTypes.User.setUser,
     user
+  }
+}
+
+export function signOut() {
+  return (dispatch) => {
+    User.signOut()
+    dispatch(setUser(null))
   }
 }
 
@@ -21,7 +26,6 @@ export function logUser({ name, password }) {
       password
     }).then(getUser)
       .then((user) => dispatch(setUser(user)))
-      .then(() =>  browserHistory.push('/'))
       .catch(err => console.warn('Log error :', err))
   }
 }
