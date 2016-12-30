@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from '../../../public/assets/logo.png';
 import LoginBox from '../LoginBox/LoginBox'
-import './LoginView.css';
+import './LoginView.less';
 
 class LoginView extends Component {
   render () {

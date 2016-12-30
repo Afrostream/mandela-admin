@@ -15,7 +15,7 @@ global.rootRequire = function (name) {
 
 // Export the application
 var app = require('./app');
-app.set('port', (process.env.PORT || 9000));
+app.set('port', (process.env.PORT || 3003));
 
 app.listen(app.get('port'), config.ip, function () {
   console.log('Express server listening on %d, in %s mode', app.get('port'), app.get('env'));

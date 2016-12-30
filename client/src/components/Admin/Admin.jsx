@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { signOut, checkUser } from '../../actions/user'
 import LoginView from '../LoginView/LoginView'
-import './Admin.css'
+import './Admin.less'
 
 class Admin extends Component {
   componentWillMount() {

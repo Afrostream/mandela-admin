@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { logUser } from '../../actions/user'
-import './LoginBox.css';
+import './LoginBox.less';
 
 const InitialState = {
     name: '',
@@ -31,10 +31,10 @@ class LoginBox extends Component {
   }
 
   render () {
-    const { 
+    const {
       handleChange,
       handleCheck,
-      state : { name, password, remember } 
+      state : { name, password, remember }
     } = this
     return (
 
@@ -42,7 +42,7 @@ class LoginBox extends Component {
         <div className="avatar"/>
         <form onSubmit={this.handleSubmit.bind(this)}>
           <div className="inputrow">
-            <input type="text" id="name" onChange={handleChange.bind(this, 'name')} placeholder="Username" value={name}/> 
+            <input type="text" id="name" onChange={handleChange.bind(this, 'name')} placeholder="Username" value={name}/>
             <label className="ion-person" htmlFor="name"></label>
           </div>
           <div className="inputrow">
