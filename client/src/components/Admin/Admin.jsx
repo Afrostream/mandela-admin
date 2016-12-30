@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { signOut, checkUser } from '../../actions/user'
 import LoginView from '../LoginView/LoginView'
+import PrettyEditor from '../PrettyEditor/PrettyEditor'
 import './Admin.css'
 
 class Admin extends Component {
@@ -10,12 +11,13 @@ class Admin extends Component {
   }
 
   render() {
-    if (!this.props.User.user) {
-      return <LoginView />
-    }
+    // if (!this.props.User.user) {
+    //   return <LoginView />
+    // }
     return (
       <div className="mandela-admin">
         <h1>Admin</h1>
+        <PrettyEditor />
         <button onClick={this.props.signOut}>Disconnect</button>
       </div>
     )

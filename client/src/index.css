@@ -8,6 +8,24 @@ body {
   color: #FFFFFF;
 }
 
+html {
+  font-size: 62.5%;
+  background-color: #f7f7f7;
+  box-sizing: border-box;
+}
+body {
+  font-size: 1.5em;
+  line-height: 1.6;
+  font-weight: 400;
+  font-family: "Lora", Georgia, serif;
+  color: #444;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
 #root {
   height: 100%;
   min-height: 100%;
