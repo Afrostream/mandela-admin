@@ -2,9 +2,9 @@
   "name": "mandela-admin-client",
   "version": "0.1.0",
   "scripts": {
-    "start": "react-scripts start --scripts-version custom-react-scripts",
-    "build": "react-scripts build --scripts-version custom-react-scripts",
-    "test": "react-scripts test --env=jsdom --scripts-version custom-react-scripts",
-    "eject": "react-scripts eject --scripts-version custom-react-scripts"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
   }
 }
