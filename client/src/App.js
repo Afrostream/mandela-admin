@@ -3,7 +3,7 @@ import { Provider } from 'react-redux'
 import Admin from './components/Admin/Admin'
 import { Router, Route, browserHistory } from 'react-router'
 import store from './lib/createStore'
-
+import './App.less';
 
 class App extends Component {
   render () {
