@@ -1,6 +1,6 @@
 {
   "name": "mandela-admin",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "proxy": "http://localhost:3003/",
   "main": "server/index.js",
@@ -10,7 +10,6 @@
     "afrostream-node-client-backend": "git+https://afrostream-tech:39378b0626f1b2d4c733eeb5c5be73908b3c8c53@github.com/Afrostream/afrostream-node-client-backend.git#v3.2.0",
     "afrostream-node-config": "git+https://afrostream-tech:39378b0626f1b2d4c733eeb5c5be73908b3c8c53@github.com/Afrostream/afrostream-node-config.git#v3.1.1",
     "connect-livereload": "^0.6.0",
-    "custom-react-scripts": "0.0.21",
     "errorhandler": "^1.5.0",
     "express": "4.13.3",
     "express-cluster": "0.0.4",
