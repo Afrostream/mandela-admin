@@ -6,7 +6,6 @@ class Home extends Component {
   render () {
     return (
       <div className="homeScreen">
-        <h2>Mandela admin</h2>
       </div>
     )
   }

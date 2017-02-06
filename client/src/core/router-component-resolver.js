@@ -23,7 +23,7 @@ export default {
   resolve: function (location, callback) {
     match({routes, location}, (err, redirect, renderProps) => {
 
-      let {params, location, routes} = renderProps
+      let {routes} = renderProps
       // We return the second level route's component, since the Tiles component
       // is used in the first lever route. Your app may update this function to
       // make route matching working ok.

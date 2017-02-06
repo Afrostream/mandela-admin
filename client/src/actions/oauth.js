@@ -1,10 +1,13 @@
 import ActionTypes from '../consts/ActionTypes'
+import * as  UserActionCreators from './user'
 
 export function signin (form) {
-  return async api => ({
-    type: ActionTypes.OAuth.signin,
-    res: await api({path: `/auth/signin`, method: 'POST', params: form})
-  })
+  return async (api, getState, dispatch) => {
+    return async api => ({
+      type: ActionTypes.OAuth.signin,
+      res: await api({path: `/auth/signin`, method: 'POST', params: form})
+    })
+  }
 }
 
 

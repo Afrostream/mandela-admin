@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import * as OAuthActionCreator from '../../actions/oauth'
+import * as UserActionCreators from '../../actions/user'
 
 import './Signin.less'
 
@@ -16,7 +17,7 @@ class Signin extends Component {
   }
 
   handleChange (e) {
-    const {email, password, remember} = this.refs
+    const {email, password} = this.refs
     this.setState({
       form: {
         email: email.value,
@@ -34,7 +35,9 @@ class Signin extends Component {
   handleSubmit (e) {
     const {props:{dispatch}} = this
     e.preventDefault()
-    dispatch(OAuthActionCreator.signin(this.state.form))
+    dispatch(OAuthActionCreator.signin(this.state.form)).then(() => {
+      dispatch(UserActionCreators.getProfile())
+    })
   }
 
   render () {

@@ -1,9 +1,11 @@
 import React, { PropTypes, Component } from 'react'
 import { DropTarget } from 'react-dnd'
+import { Breadcrumb, Icon } from 'antd'
+
 import ItemTypes from '../consts/ItemTypes'
 import classSet from 'classnames'
 import { connect } from 'react-redux'
-import { Tabs, Button, Icon } from 'antd'
+import { Tabs } from 'antd'
 import resolver from '../core/router-component-resolver'
 import HitScreen from '../screens/HitScreen'
 import * as LayoutActionCreators from '../actions/layout'
@@ -97,25 +99,27 @@ export default class DropContainer extends Component {
     })
 
 
-    dispatch(LayoutActionCreators.setState({['tabs']: tabsView.delete(removeIndex)}))
+    dispatch(LayoutActionCreators.setState({tabs: tabsView.delete(removeIndex)}))
 
   }
 
   render () {
-    const {canDrop, isOver, connectDropTarget} = this.props
+    const {canDrop, isOver, connectDropTarget, children, router} = this.props
     const isActive = canDrop && isOver
 
     const classDrop = {
       'drop-container': true,
+      'container': true,
       'can-drop': isActive
     }
 
     return connectDropTarget(
       <div className={classSet(classDrop)}>
+        <Breadcrumb routes={router.routes}/>
+        {children}
         <Tabs>
           {this.construct()}
         </Tabs>
-
       </div>,
     )
   }

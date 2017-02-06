@@ -53,151 +53,24 @@ class HitScreen extends Component {
     const {getFieldDecorator} = this.props.form
 
 
-    const image = extractImg({data, fit: 'crop', keys: ['thumb', 'image'], width: 240, height: 120})
-
-    const formItemLayout = {
-      labelCol: {span: 6},
-      wrapperCol: {span: 14},
-    }
-    const tailFormItemLayout = {
-      wrapperCol: {
-        span: 14,
-        offset: 6,
-      },
-    }
-    const prefixSelector = getFieldDecorator('prefix', {
-      initialValue: '86',
-    })(
-      <Select className="icp-selector">
-        <Option value="86">+86</Option>
-      </Select>
-    )
+    const image = extractImg({data, fit: 'crop', keys: ['thumb', 'poster', 'image'], width: 240, height: 120})
 
     return (
       <div className="pane-container hitScreen">
-        {data &&
-        <Card style={{width: 240}} bodyStyle={{padding: 0}}>
-          <div className="custom-image">
-            <img alt="example" width="100%" src={image}/>
-          </div>
-          <div className="custom-card">
-            <h3> {data.get('title')}</h3>
-            <p> {data.get('synopsys')}</p>
-          </div>
-        </Card>
-        }
         <Form onSubmit={this.handleSubmit}>
           <FormItem
-            {...formItemLayout}
-            label="E-mail"
-            hasFeedback
+            label="Title"
           >
-            {getFieldDecorator('email', {
-              rules: [{
-                type: 'email', message: 'The input is not valid E-mail!',
-              }, {
-                required: true, message: 'Please input your E-mail!',
-              }],
-            })(
-              <Input />
-            )}
+            <Input defaultValue={data.get('title')}/>
           </FormItem>
           <FormItem
-            {...formItemLayout}
-            label="Password"
-            hasFeedback
+            label="Synopsis"
           >
-            {getFieldDecorator('password', {
-              rules: [{
-                required: true, message: 'Please input your password!',
-              }, {
-                validator: this.checkConfirm,
-              }],
-            })(
-              <Input type="password" onBlur={this.handlePasswordBlur}/>
-            )}
+            <Input type="textarea" defaultValue={data.get('synopsis') || data.get('body')}
+                   autosize={{minRows: 10, maxRows: 50}}/>
           </FormItem>
-          <FormItem
-            {...formItemLayout}
-            label="Confirm Password"
-            hasFeedback
-          >
-            {getFieldDecorator('confirm', {
-              rules: [{
-                required: true, message: 'Please confirm your password!',
-              }, {
-                validator: this.checkPassword,
-              }],
-            })(
-              <Input type="password"/>
-            )}
-          </FormItem>
-          <FormItem
-            {...formItemLayout}
-            label={(
-              <span>
-              Nickname&nbsp
-                <Tooltip title="What do you want other to call you?">
-                <Icon type="question-circle-o"/>
-              </Tooltip>
-            </span>
-            )}
-            hasFeedback
-          >
-            {getFieldDecorator('nickname', {
-              rules: [{required: true, message: 'Please input your nickname!'}],
-            })(
-              <Input />
-            )}
-          </FormItem>
-          <FormItem
-            {...formItemLayout}
-            label="Habitual Residence"
-          >
-            {getFieldDecorator('residence', {
-              initialValue: ['zhejiang', 'hangzhou', 'xihu'],
-              rules: [{type: 'array', required: true, message: 'Please select your habitual residence!'}],
-            })(
-              <Cascader/>
-            )}
-          </FormItem>
-          <FormItem
-            {...formItemLayout}
-            label="Phone Number"
-          >
-            {getFieldDecorator('phone', {
-              rules: [{required: true, message: 'Please input your phone number!'}],
-            })(
-              <Input addonBefore={prefixSelector}/>
-            )}
-          </FormItem>
-          <FormItem
-            {...formItemLayout}
-            label="Captcha"
-            extra="We must make sure that your are a human."
-          >
-            <Row gutter={8}>
-              <Col span={12}>
-                {getFieldDecorator('captcha', {
-                  rules: [{required: true, message: 'Please input the captcha you got!'}],
-                })(
-                  <Input size="large"/>
-                )}
-              </Col>
-              <Col span={12}>
-                <Button size="large">Get captcha</Button>
-              </Col>
-            </Row>
-          </FormItem>
-          <FormItem {...tailFormItemLayout} style={{marginBottom: 8}}>
-            {getFieldDecorator('agreement', {
-              valuePropName: 'checked',
-            })(
-              <Checkbox>I had read the <a>agreement</a></Checkbox>
-            )}
-          </FormItem>
-          <FormItem {...tailFormItemLayout}>
-            <Button type="primary" htmlType="submit" size="large">Register</Button>
+          <FormItem >
+            <Button type="primary" htmlType="submit" size="large">Save</Button>
           </FormItem>
         </Form>
       </div>
@@ -207,7 +80,7 @@ class HitScreen extends Component {
 }
 
 HitScreen.propTypes = {
-  data: Immutable
+  data: PropTypes.instanceOf(Immutable.Map)
 }
 
 HitScreen.defaultProps = {}

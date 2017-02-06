@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from '../../../public/assets/logo.png';
 import Signin from './Signin'
 import './OAuth.less';
 

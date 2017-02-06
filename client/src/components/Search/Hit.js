@@ -29,7 +29,7 @@ const hitSource = {
     const dropResult = monitor.getDropResult()
 
     if (dropResult) {
-      dispatch(LayoutActionCreators.setState({['tabs']: layoutState.get('tabs').push(item)}))
+      dispatch(LayoutActionCreators.setState({tabs: layoutState.get('tabs').push(item)}))
     }
   },
 }
@@ -55,7 +55,7 @@ class Hit extends Component {
       data
     }
 
-    dispatch(LayoutActionCreators.setState({['tabs']: layoutState.get('tabs').push(item)}))
+    dispatch(LayoutActionCreators.setState({tabs: layoutState.get('tabs').push(item)}))
   }
 
   render () {

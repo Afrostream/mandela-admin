@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Layout } from 'antd'
+const {Sider} = Layout
+
 import { withRouter } from 'react-router'
-import SplitPane from 'react-split-pane'
 import SearchPane from './Search/SearchPane'
 import OAuth from './OAuth/OAuth'
 import Menu from './Menu/Menu'
 import Header from './Header/Header'
-import Sidebar from 'react-sidebar'
-import SidebarContent from './Sidebar/SidebarContent'
 import HTML5Backend from 'react-dnd-html5-backend'
 import { DragDropContext } from 'react-dnd'
 import DropContainer from './DropContainer'
@@ -19,32 +19,40 @@ class App extends Component {
   render () {
     const {props:{User, Layout}} =this
     const user = User.get('user')
-    //if (!user) {
-    {/*return <OAuth />*/
+    if (!user) {
+      {
+        return <OAuth />
+      }
     }
-    //}
 
     const layoutState = Layout.get('state')
-    const open = layoutState.get('sideBarOpen')
-    const sideBar = <SidebarContent {...{open}} ><Menu /></SidebarContent>
+    const theme = layoutState.get('theme')
 
     const sidebarProps = {
-      transitions: true,
-      sidebar: sideBar,
-      docked: false,
-      open,
-      sidebarClassName: 'sidebar'
+      className: 'sidebar',
+      collapsible: true,
+      collapsed: !layoutState.get('sideBarOpen'),
+      trigger: null
+    }
+
+    const searchProps = {
+      className: 'sidebar sidebar-right',
+      collapsible: true,
+      width: 600,
+      collapsed: !layoutState.get('searchBarOpen'),
+      trigger: null
     }
 
     return (
-      <div className="app">
-        <Sidebar {...sidebarProps}>
+      <div className={`app ant-layout ant-layout-has-sider ${theme}`}>
+        <Sider {...sidebarProps}><Menu collapsed={sidebarProps.collapsed}/></Sider>
+        <div className={`ant-layout`}>
           <Header/>
-          <SplitPane className="split-container" split="vertical" minSize={200} maxSize={1000} defaultSize={1000}>
+          <div className={`ant-layout-content`}>
             <DropContainer {...this.props}/>
-            <SearchPane {...this.props}/>
-          </SplitPane>
-        </Sidebar>
+          </div>
+        </div>
+        <Sider {...searchProps}><SearchPane {...this.props} collapsed={searchProps.collapsed}/></Sider>
       </div>
     )
   }

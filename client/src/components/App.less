@@ -1,10 +1,22 @@
 @import "~antd/dist/antd.less";
+@import "skin.less";
+@import "vars.less";
+@import "Sidebar.less";
 @import url('https://fonts.googleapis.com/css?family=Lobster|Roboto');
 
 .app {
   height: 100%;
   background-color: #fff;
   font-family: 'Roboto', sans-serif;
+  &.dark {
+    background: @dark-half;
+    .ant-card {
+      background: darken(@dark-half, 5%);
+    }
+  }
+  .ant-card {
+    margin-bottom: 24px;
+  }
 }
 
 .app .app-background:before {
@@ -30,17 +42,19 @@
 .split-container {
 }
 
+.sidebar {
+}
+
 .pane-container {
   position: relative;
-  height: 100vh;
   width: 100%;
 }
 
 .drop-container {
-  margin-top: 50px;
-  width: 100%;
-  height: 100%;
-  background-color: #fff;
+  position: relative;
+  padding: 24px;
+  min-height: ~"calc(100vh - 50px)";
+  background: #f9f9f9;
   &.can-drop {
     background-color: lighten(#111, 20%);
   }

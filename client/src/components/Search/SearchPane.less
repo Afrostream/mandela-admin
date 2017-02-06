@@ -4,7 +4,6 @@
   right: 0;
   top: 0;
   bottom: 0;
-  background: #f9f9f9;
   .search-inputs {
     display: flex;
     .zmdi {
@@ -25,8 +24,8 @@
       width: 50px;
       height: 50px;
       font-size: 1.2em;
-      color: white;
-      background: lighten(#222222, 1%);
+      color: #fff;
+      background: lighten(#222, 1%);
       text-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
     }
 
@@ -34,7 +33,7 @@
       width: 100%;
       font-size: inherit;
       border: none;
-      background: lighten(#222222, 1%);
+      background: lighten(#222, 1%);
       border-left: none;
       box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.4);
       outline: none;
@@ -42,7 +41,7 @@
       font-size: 1.2em;
       font-weight: 100;
       height: 50px;
-      color: #FFFFFF;
+      color: #fff;
       &:focus {
         box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.8);
         border-color: rgba(0, 0, 0, 0.6);
@@ -60,8 +59,12 @@
   }
 
   .search-hits {
+    background: #fff;
+    border-left: 1px solid #dfdfdf;
     position: absolute;
     bottom: 0;
+    left: 0;
+    right: 0;
     top: 50px;
     overflow: auto;
     display: flex;

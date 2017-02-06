@@ -15,7 +15,7 @@ export default createReducer(initialState, {
     }
     storeToken(res)
     return state.merge({
-      [`token`]: res
+      token: res
     })
   },
 

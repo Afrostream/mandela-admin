@@ -6,7 +6,8 @@ const initialState = Immutable.fromJS({
   state: {
     sideBarOpen: false,
     searchBarOpen: false,
-    tabs: []
+    tabs: [],
+    theme: 'light'
   }
 })
 
@@ -14,7 +15,7 @@ export default createReducer(initialState, {
 
   [ActionTypes.Layout.state](state, {data}) {
     return state.merge({
-      ['state']: data
+      state: data
     })
   }
 })

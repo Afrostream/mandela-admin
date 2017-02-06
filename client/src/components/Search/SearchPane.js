@@ -1,17 +1,29 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import Immutable from 'immutable'
 import { connect } from 'react-redux'
 import _ from 'lodash'
 import * as SearchActionCreator from '../../actions/search'
 import * as LayoutActionCreators from '../../actions/layout'
 import Hit from './Hit'
+import { Checkbox } from 'antd'
 
 import './SearchPane.less'
+
+const CheckboxGroup = Checkbox.Group
 
 @connect(({Search, Layout}) => ({Search, Layout}))
 class SearchPane extends Component {
 
   debounceSearch = _.debounce(::this.search, 400)
+
+  open () {
+    const {props:{dispatch, Layout}} =this
+
+    let layoutState = Layout.get('state')
+    layoutState = layoutState.set('searchBarOpen', !layoutState.get('searchBarOpen'))
+
+    dispatch(LayoutActionCreators.setState(layoutState))
+  }
 
   search () {
     const {refs:{inputSearch}, props:{dispatch, router}} = this
@@ -36,11 +48,11 @@ class SearchPane extends Component {
 
   render () {
 
-    const {props:{Search}} =this
+    const {props:{Search, collapsed}} =this
     const hits = Search.get('search')
     const rows = hits && hits.get('rows')
 
-    const count = rows && rows.reduce((sum, hit) => {
+    const count = (rows && rows.reduce((sum, hit) => {
         let increment = 0
         if (sum instanceof Immutable.Map) {
           increment = sum.get('nbHits')
@@ -48,7 +60,7 @@ class SearchPane extends Component {
           increment = sum
         }
         return increment + hit.get('nbHits')
-      }) || 0
+      })) || 0
 
     const allHits = rows && rows.reduce((sum, hit) => {
         return sum.concat(hit.get('hits'))
@@ -57,7 +69,7 @@ class SearchPane extends Component {
     return (
       <div className="search-pane">
         <div className="search-inputs">
-          <div className="btn search-button">
+          <div className="btn search-button" onClick={::this.open}>
             <i className="zmdi zmdi-search"></i>
           </div>
           <div className="input-container">
@@ -65,11 +77,11 @@ class SearchPane extends Component {
                    ref="inputSearch"
                    placeholder="Search ..."
                    onChange={::this.debounceSearch}/>
-            <div id="stats">{`Results : ${count}`}</div>
+            {!collapsed && <div id="stats">{`Results : ${count}`}</div>}
           </div>
         </div>
         <div className="search-hits">
-          {allHits && allHits.map((data, key) => {
+          {!collapsed && allHits && allHits.map((data, key) => {
             let icon = ''
             switch (data.get('type')) {
               case 'serie':
@@ -82,7 +94,7 @@ class SearchPane extends Component {
               default:
                 break
             }
-            return <Hit key={`seach-hit-${key}`} {...{data}} {...this.props} />
+            return <Hit key={`seach-hit-${key}`} {...{data, icon}} {...this.props} />
           })
           }
         </div>
@@ -92,7 +104,9 @@ class SearchPane extends Component {
 }
 
 
-SearchPane.propTypes = {}
+SearchPane.propTypes = {
+  collapsed: PropTypes.bool
+}
 
 SearchPane.defaultProps = {}
 
