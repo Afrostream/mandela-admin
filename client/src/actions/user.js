@@ -1,42 +1,32 @@
 import ActionTypes from '../consts/ActionTypes'
-import User from '../lib/api/User'
 
-export function getUser() {
-  return User.get()
-}
-
-export function setUser(user) {
+export function setUser (user) {
   return {
     type: ActionTypes.User.setUser,
     user
   }
 }
 
-export function checkUser() {
-  console.warn('Checking if user')
-  return dispatch => {
-    return User.hasToken() && 
-    User.get()
-        .then((user) => dispatch(setUser(user)))
-        .catch(err => ({error: err}))
-  }
-  
-}
+export function getProfile () {
+  return async (api, getState) => {
+    let user = getState().User.get('user')
+    if (!user) {
+      await api({
+        path: `/api/users/me`,
+        passToken: true
+      }).then((body) => {
+        user = body
+      })
+    }
 
-export function signOut() {
-  return (dispatch) => {
-    User.signOut()
-    dispatch(setUser(null))
-  }
-}
+    if (!user) {
+      throw new Error('No user found')
+    }
 
-export function logUser({ name, password }) {
-  return (dispatch, getState) => {
-    User.signIn({
-      email: name,
-      password
-    }).then(getUser)
-      .then((user) => dispatch(setUser(user)))
-      .catch(err => console.warn('Log error :', err))
+    return {
+      type: ActionTypes.User.getProfile,
+      user: user
+    }
   }
+
 }

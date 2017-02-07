@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 
 var middlewareAuth = require('./middlewares/middleware-auth.js');
+var middlewareDevHttpProxy = require('http-proxy-middleware');
 var middlewareDumpPostdata = require('./middlewares/middleware-dumppostdata.js');
 
 // pre-configured express app
@@ -15,12 +16,20 @@ app.set('appPath', path.resolve(__dirname, '..', '..', 'client', 'build'));
 
 switch (process.env.NODE_ENV) {
   case 'production':
-  case 'staging':
+    //case 'staging':
     break;
   default:
-    var middlewareLiveReload = require('connect-livereload');
+    //var middlewareLiveReload = require('connect-livereload');
     var middlewareErrorHandler = require('errorhandler');
-    app.use(middlewareLiveReload());
+    var mayProxy = /^(?!\/(index\.html$|.*\.hot-update\.json$|sockjs-node|api|auth\/)).*$/;
+    app.use(mayProxy, middlewareDevHttpProxy(pathname => mayProxy.test(pathname), {
+      target: 'http://localhost:3002/',
+      logLevel: 'silent',
+      ws: true,
+      secure: false,
+      changeOrigin: true
+    }));
+    //app.use(middlewareLiveReload());
     app.use(middlewareErrorHandler());
     break;
 }

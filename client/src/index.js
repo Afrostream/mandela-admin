@@ -1,12 +1,20 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
+import { IntlProvider } from 'react-intl-redux'
+import Router from './routes/Router'
+import createStore from './core/createStore'
 
-import './index.less';
+import './index.less'
 
-import './lib/api/User'
+const store = createStore()
+const state = store.getState()
 
 ReactDOM.render(
-  <App />,
+  <Provider {...{store}} >
+    <IntlProvider key="intl" {...{locale: state.intl.defaultLocale}}>
+      <Router />
+    </IntlProvider>
+  </Provider>,
   document.getElementById('root')
-);
+)

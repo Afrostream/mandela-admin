@@ -1,0 +1,143 @@
+@import "~antd/dist/antd.less";
+@import "skin.less";
+@import "vars.less";
+@import "Sidebar.less";
+@import url('https://fonts.googleapis.com/css?family=Lobster|Roboto');
+
+.app {
+  height: 100%;
+  background-color: #fff;
+  font-family: 'Roboto', sans-serif;
+  &.dark {
+    background: @dark-half;
+    .ant-card {
+      background: darken(@dark-half, 5%);
+    }
+  }
+  .ant-card {
+    margin-bottom: 24px;
+  }
+}
+
+.app .app-background:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background-image: url(../../public/assets/pexels-photo.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  .app-logo {
+    height: 200px;
+  }
+}
+
+.mandela-admin {
+  color: black;
+}
+
+.split-container {
+}
+
+.sidebar {
+}
+
+.pane-container {
+  position: relative;
+  width: 100%;
+}
+
+.drop-container {
+  position: relative;
+  padding: 24px;
+  min-height: ~"calc(100vh - 50px)";
+  background: #f9f9f9;
+  &.can-drop {
+    background-color: lighten(#111, 20%);
+  }
+}
+
+.Pane {
+  overflow: hidden;
+  > div {
+    &:after {
+      transition: background 1s linear;
+    }
+
+    &.can-drop {
+      &:after {
+        content: "";
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        position: absolute;
+        background-color: fade(#111, 20%);
+      }
+    }
+  }
+}
+
+.Resizer {
+  background: fade(#111, 20%);
+  z-index: 1;
+  box-sizing: border-box;
+  background-clip: padding-box;
+}
+
+.Resizer:hover {
+  -webkit-transition: all 2s ease;
+  transition: all 2s ease;
+}
+
+.Resizer.horizontal {
+  height: 11px;
+  margin: -5px 0;
+  border-top: 5px solid rgba(255, 255, 255, 0);
+  border-bottom: 5px solid rgba(255, 255, 255, 0);
+  cursor: row-resize;
+  width: 100%;
+  text-align: center;
+  &:after,
+  &:before {
+    content: "...";
+    height: 1em;
+    font-size: 1em;
+    color: black;
+    margin-top: -0.5em;
+    position: absolute;
+  }
+  &:after {
+    margin-top: -1.2em;
+    color: white;
+  }
+}
+
+.Resizer.horizontal:hover {
+  border-top: 5px solid rgba(0, 0, 0, 0.5);
+  border-bottom: 5px solid rgba(0, 0, 0, 0.5);
+}
+
+.Resizer.vertical {
+  width: 11px;
+  margin: 0 -5px;
+  border-left: 5px solid rgba(255, 255, 255, 0);
+  border-right: 5px solid rgba(255, 255, 255, 0);
+  cursor: col-resize;
+}
+
+.Resizer.vertical:hover {
+  border-left: 5px solid rgba(0, 0, 0, 0.5);
+  border-right: 5px solid rgba(0, 0, 0, 0.5);
+}
+
+.Resizer.disabled {
+  cursor: not-allowed;
+}
+
+.Resizer.disabled:hover {
+  border-color: transparent;
+}

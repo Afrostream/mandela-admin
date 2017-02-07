@@ -3,13 +3,13 @@ import ActionTypes from '../consts/ActionTypes'
 import Immutable from 'immutable'
 
 const initialState = Immutable.fromJS({
-  user: null
+  search: null
 });
 
 export default createReducer(initialState, {
-  [ActionTypes.User.getProfile](state, {user}) {
+  [ActionTypes.Search.search](state, {res}) {
     return state.merge({
-      [`user`]: user
+      search: res
     })
   }
 })
