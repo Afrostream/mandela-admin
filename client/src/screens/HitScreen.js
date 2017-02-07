@@ -6,7 +6,6 @@ import { extractImg } from '../core/utils'
 
 import { Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, Card } from 'antd'
 const FormItem = Form.Item
-const Option = Select.Option
 
 @connect(({Search}) => ({Search}))
 class HitScreen extends Component {

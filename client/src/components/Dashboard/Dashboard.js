@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { Row, Col, Card } from 'antd'
 import Visit from './Visit'
-import styles from './Dashboard.less'
+import './Dashboard.less'
 
 function Dashboard ({visits, dispatch}) {
   return (
@@ -40,4 +40,4 @@ Dashboard.defaultProps = {
     {name: 'Page G', uv: 3490, pv: 4300, amt: 2100},]
 }
 
-export default connect(({dashboard}) => ({dashboard}))(Dashboard)
+export default connect()(Dashboard)
